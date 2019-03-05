@@ -1,0 +1,118 @@
+@comm-width: 70px;
+.nav {
+  width: @comm-width;
+  height: 100vh;
+  background: #212427;
+  position: relative;
+  box-shadow: 5px 0 10px rgba(0,0,0,.06);
+  border-right: rgba(0,0,0,.5);
+  
+  #mixin-nav {
+    width: @comm-width;
+    height: 70px;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-top: 1px solid rgba(0,0,0,.5);
+    border-bottom: 1px solid rgba(255,255,255,.05);
+  }
+
+  #mixin-transition {
+    transition: .5s;
+  }
+
+  .nav-logo {
+    #mixin-nav;
+    color: white;
+    border: none;
+    display: inline-block;
+    .logo{
+      width: 60px;
+      height: 60px;
+      border: none;
+      margin-top: 5px;
+    }
+  }
+
+  .nav-home {
+    #mixin-nav;
+    #mixin-transition;
+    line-height: 60px;
+    font-size: 25px;
+    color: rgb(150, 150, 150);
+    position: relative;
+
+    .left-effect {
+      #mixin-transition;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 100%;
+      background: dodgerblue;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: dodgerblue;
+    }
+    &.active{
+      background: rgba(255, 255, 255, 0.08);
+      color: dodgerblue;
+    }
+  }
+
+  .nav-moment {
+    .nav-home;
+    .left-effect{
+      background: coral;
+    }
+    &.active{
+      color: coral;
+    }
+    &:hover{
+      color: coral;
+    }
+  }
+
+  .nav-search {
+    .nav-home;
+    .left-effect{
+      background: chartreuse;
+    }
+    &.active{
+      color: chartreuse;
+    }
+    &:hover{
+      color: chartreuse;
+    }
+  }
+
+  .nav-resource {
+    .nav-home;
+    .left-effect{
+      background: khaki;
+    }
+    &.active{
+      color: khaki;
+    }
+    &:hover{
+      color: khaki;
+    }
+  }
+
+  .nav-message {
+    .nav-home;
+    .left-effect{
+      background: blueviolet;
+    }
+    &.active{
+      color: blueviolet;
+    }
+    &:hover{
+      color: blueviolet;
+    }
+  }
+
+}

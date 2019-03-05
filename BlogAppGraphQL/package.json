@@ -1,0 +1,18 @@
+{
+  "name": "blogappgraphql",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-graphql": "^0.7.1",
+    "graphql": "^14.0.2",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  },
+  "scripts": {
+    "start": "node src/graphQLServer",
+    "dev": "nodemon src/graphQLServer"
+  }
+}

@@ -1,0 +1,167 @@
+.star-button {
+  width: 130px;
+  height: 25px;
+  display: inline-block;
+
+  span {
+    padding: 0 3px 0 3px;
+    text-align: center;
+
+    i {
+      color: #dcdcdc;
+    }
+
+    &.active {
+      i {
+        color: sandybrown;
+      }
+    }
+  }
+}
+
+.pay-button {
+  width: 220px;
+  height: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, .12);
+  overflow: hidden;
+  cursor: pointer;
+  background: white;
+
+  .button-wrapper > div {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .button-wrapper {
+    transition: .5s;
+    transition-timing-function: cubic-bezier(0, .97, .74, 1.16);
+    margin-top: -80px;
+  }
+
+  .pay-div-pay {
+    color: white;
+    background: dodgerblue;
+  }
+
+  .pay-div-process {
+    background: white;
+    color: rgb(150, 150, 150);
+  }
+
+  .pay-div-success {
+    background: white;
+    color: lime;
+  }
+
+  &.process {
+    .button-wrapper {
+      margin-top: -40px;
+    }
+  }
+
+  &.success {
+    .button-wrapper {
+      margin-top: 0;
+    }
+  }
+}
+
+.article-button {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 50%;
+  position: relative;
+  transition: .3s;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .03);
+
+  &:hover {
+    transform: translateY(2px);
+  }
+
+  &:active {
+    transform: translateY(4px);
+  }
+
+  &.active {
+    button {
+      background: #969696;
+    }
+
+    span {
+      background: #333333;
+    }
+  }
+
+  &.style2 {
+    button {
+      background: coral;
+    }
+
+    span {
+      background: red;
+    }
+  }
+
+  &.style3 {
+    button {
+      background: greenyellow;
+    }
+
+    span {
+      background: fuchsia;
+    }
+  }
+
+  &.style4 {
+    button {
+      background: coral;
+    }
+
+    span {
+      background: royalblue;
+    }
+  }
+
+  &.style5 {
+    button {
+      background: blueviolet;
+    }
+
+    span {
+      background: aqua;
+    }
+  }
+
+  button {
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    background: dodgerblue;
+    width: 100%;
+    height: 100%;
+    color: white;
+    cursor: pointer;
+  }
+
+  span {
+    position: absolute;
+    left: 68%;
+    top: -2px;
+    text-align: center;
+    display: inline-block;
+    width: 20px;
+    padding: 1px 4px 1px 4px;
+    border-radius: 10px;
+    font-size: 7px;
+    color: white;
+    background: burlywood;
+    z-index: 4;
+  }
+}
+

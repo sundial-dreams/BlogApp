@@ -1,0 +1,379 @@
+@keyframes bg-twinkle {
+  from {
+    background: rgba(0,0,0,.02);
+  }
+  to{
+    background: transparent;
+  }
+}
+
+@keyframes el-twinkle {
+  from {
+    background: rgba(0,0,0,.2);
+  }
+  to{
+    background: rgba(0,0,0,.1);
+  }
+}
+#mixin-animation {
+  animation: el-twinkle 1s alternate infinite;
+}
+@color: rgba(0, 0, 0, .2);
+.loading {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .02);
+
+  animation: bg-twinkle 1s alternate infinite;
+
+  .head {
+    width: 100%;
+    height: 90px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .05);
+
+    .left {
+      font-size: 0;
+      height: 100%;
+
+      .picture {
+        display: inline-block;
+        width: 40%;
+        height: 100%;
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 50px;
+          height: 50px;
+          background: @color;
+          border-radius: 50%;
+          #mixin-animation;
+        }
+      }
+
+      .other {
+        display: inline-block;
+        width: 50%;
+        height: 100%;
+        position: relative;
+
+        &::before {
+          content: "";
+          width: 100px;
+          height: 20px;
+          background: @color;
+          position: absolute;
+          top: 30px;
+          left: 10px;
+          border-radius: 10px;
+          #mixin-animation;
+        }
+
+        &::after {
+          content: "";
+          width: 50px;
+          height: 15px;
+          background: @color;
+          position: absolute;
+          border-radius: 10px;
+          top: 60px;
+          left: 10px;
+          #mixin-animation;
+        }
+      }
+    }
+
+    .middle {
+
+    }
+
+    .right {
+      height: 100%;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 200px;
+        height: 32px;
+        background: @color;
+        border-radius: 16px;
+        #mixin-animation;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 210px;
+        width: 32px;
+        height: 32px;
+        background: @color;
+        border-radius: 16px;
+        #mixin-animation;
+      }
+    }
+
+  }
+
+  .content {
+    position: relative;
+    z-index: -1;
+    width: 100%;
+    height: 80%;
+
+    .content-left {
+
+      .left-item1 {
+        width: 80%;
+        margin: 50px auto 0 auto;
+
+        .item1-title {
+          width: 130px;
+          height: 20px;
+          background: @color;
+          border-radius: 10px;
+          #mixin-animation;
+        }
+
+        .item1-content {
+          width: 80%;
+          height: 400px;
+          font-size: 0;
+          margin-top: 15px;
+
+          .item1-item {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            margin: 0 7px 7px 0;
+            background: @color;
+            border-radius: 3px;
+            #mixin-animation;
+          }
+        }
+
+      }
+
+      .left-item2 {
+        width: 80%;
+        margin: 10px auto 0 auto;
+
+        .left-item2-title {
+          background: @color;
+          width: 200px;
+          height: 20px;
+          border-radius: 10px;
+          #mixin-animation;
+        }
+
+        .left-item2-content {
+          position: relative;
+
+          &::after {
+            position: absolute;
+            content: "";
+            display: block;
+            top: 10px;
+            background: @color;
+            width: 150px;
+            height: 10px;
+            border-radius: 5px;
+            #mixin-animation;
+          }
+
+          &::before {
+            position: absolute;
+            top: 40px;
+            content: "";
+            display: block;
+            background: @color;
+            #mixin-animation;
+            width: 100px;
+            height: 10px;
+            border-radius: 5px;
+          }
+        }
+      }
+    }
+
+    .content-middle {
+      .middle-item2 {
+        width: 90%;
+        margin: 0 auto;
+        overflow: hidden;
+        .middle-item2-picture {
+          float: left;
+          background: @color;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          #mixin-animation;
+        }
+
+        .middle-item2-content {
+          float: left;
+          width: 83%;
+          height: 160px;
+          left: 100px;
+          margin-left: 10px;
+          .name {
+            width: 150px;
+            height: 22px;
+            background: @color;
+            border-radius: 11px;
+            margin-bottom: 10px;
+            #mixin-animation;
+          }
+
+          .article-content {
+            width: 100%;
+            height: 120px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 5px rgba(0,0,0,.12);
+
+            .title {
+              margin-top: 30px;
+              position: relative;
+              #mixin{
+                content: '';
+                background: @color;
+                position: absolute;
+                display: block;
+                border-radius: 10px;
+                left: 5px;
+                #mixin-animation;
+              }
+              &::after{
+                #mixin;
+                width: 170px;
+                height: 20px;
+                top: 2px;
+              }
+              &::before{
+                #mixin;
+                width: 360px;
+                height: 10px;
+                top: 40px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .content-right {
+      position: relative;
+      height: 100%;
+
+      .right-item {
+        position: relative;
+        background: @color;
+        top: 20px;
+        width: 130px;
+        height: 25px;
+        border-radius: 13px;
+        #mixin-animation;
+        #mixin{
+          content: '';
+          display: block;
+          width: 200px;
+          height: 20px;
+          background: @color;
+          border-radius: 12px;
+          position: absolute;
+          #mixin-animation;
+        }
+        &::after{
+          #mixin;
+          top: 30px;
+          
+        }
+        &::before{
+          #mixin;
+          top: 70px;
+          width: 100px;
+        }
+      }
+    }
+  }
+}
+
+.middle-item1 {
+  width: 90%;
+  margin: 40px auto 0 auto;
+  overflow: hidden;
+  .middle-item1-picture {
+    float: left;
+    background: @color;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    #mixin-animation;
+  }
+
+  .middle-item1-content {
+    float: left;
+    width: 83%;
+    height: 400px;
+    left: 100px;
+    margin-left: 10px;
+    .name {
+      width: 150px;
+      height: 22px;
+      background: @color;
+      border-radius: 11px;
+      margin-bottom: 10px;
+      #mixin-animation;
+    }
+
+    .article-content {
+      width: 100%;
+      height: 300px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 5px rgba(0,0,0,.12);
+      .picture {
+        height: 230px;
+        width: 100%;
+        background: @color;
+        #mixin-animation;
+      }
+
+      .title {
+        margin-top: 5px;
+        position: relative;
+        #mixin{
+          content: '';
+          background: @color;
+          position: absolute;
+          display: block;
+          border-radius: 10px;
+          left: 5px;
+          #mixin-animation;
+        }
+        &::after{
+          #mixin;
+          width: 120px;
+          height: 20px;
+          top: 2px;
+        }
+        &::before{
+          #mixin;
+          width: 300px;
+          height: 10px;
+          top: 40px;
+        }
+      }
+
+    }
+  }
+}

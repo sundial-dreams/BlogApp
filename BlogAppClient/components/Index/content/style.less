@@ -1,0 +1,360 @@
+.content {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  padding-top: 85px;
+  overflow: scroll;
+  float: right;
+  box-sizing: border-box;
+}
+
+#more-button {
+  float: right;
+  width: 50px;
+  display: inline-block;
+  color: dodgerblue;
+  height: 100%;
+  font-size: 20px;
+  background: transparent;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.left-content {
+  color: rgb(120, 120, 120);
+  text-align: center;
+
+  .left-content-collect {
+    margin-top: 20px;
+    width: 90%;
+    display: inline-block;
+
+    .collect-title {
+      text-align: left;
+
+      h3 {
+        width: 50%;
+        text-align: left;
+        display: inline-block;
+      }
+
+      button {
+        #more-button
+      }
+
+    }
+
+
+    ul {
+      margin-top: 10px;
+      width: 100%;
+
+      li {
+        width: 100%;
+      }
+    }
+  }
+
+  .left-content-comment {
+    width: 90%;
+    display: inline-block;
+    margin-top: 50px;
+    text-align: left;
+
+    .comment-title {
+      width: 100%;
+      height: 100%;
+
+      h3 {
+        width: 50%;
+        text-align: left;
+        display: inline-block;
+      }
+
+      button {
+        #more-button
+      }
+    }
+
+    ul {
+      width: 100%;
+      margin-top: 10px;
+
+      li {
+        width: 80%;
+        margin-bottom: 5px;
+
+        div {
+          width: 100%;
+          height: 30px;
+          color: #212427;
+
+          p {
+            text-indent: 5px;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.article-item {
+  width: 100%;
+  min-height: 200px;
+  font-size: 0;
+
+  .left {
+    text-align: center;
+    width: 15%;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 30px;
+
+  }
+
+  .right {
+    padding: 20px;
+    box-sizing: border-box;
+    width: 85%;
+    height: auto;
+    display: inline-block;
+    font-size: 16px;
+
+    .article-info {
+      width: 100%;
+      height: 40px;
+      color: #969696;
+
+      h3, p, span {
+        margin: 0;
+        display: inline-block;
+      }
+
+      h3 {
+        color: #212427;
+        margin-right: 10px;
+      }
+
+      span {
+        float: right;
+        margin-right: 5px;
+      }
+
+    }
+
+    .article-text {
+      @height: 330px;
+      border-radius: 5px;
+      width: 100%;
+      height: @height;
+      box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+      overflow: hidden;
+      cursor: pointer;
+
+      .picture {
+        width: 100%;
+        height: 250px;
+        background: dodgerblue;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .title {
+        box-sizing: border-box;
+        padding: 5px 10px 0 10px;
+        width: 100%;
+        height: @height - 250px;
+        display: flex;
+
+        .title-left {
+          flex: 1;
+
+          h2, p {
+            margin: 0;
+            color: #212427;
+          }
+
+          p {
+            margin-top: 10px;
+            text-indent: 5px;
+            font-size: 12px;
+            color: #969696;
+          }
+        }
+
+        .title-right {
+          flex: auto auto 200px;
+          box-sizing: border-box;
+          padding-top: 30px;
+
+          span {
+            color: #969696;
+          }
+        }
+      }
+    }
+
+    .article-script {
+      height: 50px;
+      width: 100%;
+      padding-top: 25px;
+      box-sizing: border-box;
+
+      .script-left {
+        float: left;
+        width: 70%;
+        height: 100%;
+
+        span {
+          color: #dcdcdc;
+          margin-right: 10px;
+        }
+      }
+
+      .script-right {
+        width: 30%;
+        height: 100%;
+        float: left;
+
+        button {
+          outline: none;
+          border: none;
+          background: transparent;
+          color: #dcdcdc;
+          float: right;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+
+.middle-content {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, .02);
+  box-sizing: border-box;
+  padding-top: 50px;
+
+  .article {
+    width: 100%;
+    min-height: 200px;
+
+    ul {
+      width: 100%;
+      min-height: 200px;
+
+      li {
+        width: 100%;
+        min-height: 200px;
+        box-sizing: border-box;
+        border: 1px solid rgba(0, 0, 0, .02);
+        border-radius: 1px;
+      }
+    }
+  }
+}
+
+.collect-item {
+  width: 200px;
+  height: 60px;
+
+  .collect-item-left {
+    width: 80px;
+    height: 100%;
+    float: left;
+    line-height: 80px;
+    text-align: center;
+
+  }
+
+  .collect-item-right {
+    width: 120px;
+    float: left;
+
+    h3 {
+      color: #212427;
+      margin: 0 0 5px 0;
+      font-size: 14px;
+    }
+  }
+}
+
+
+.right-content {
+  width: 100%;
+  text-align: center;
+
+  .hot {
+    margin-top: 20px;
+    display: inline-block;
+    width: 90%;
+    min-height: 500px;
+
+    .hot-title {
+      font-size: 0;
+      border-bottom: 1px solid rgba(0,0,0,.07);
+      h3{
+        color: #212427;
+        width: 50%;
+        height: 40px;
+        display: inline-block;
+        font-size: 20px;
+      }
+      button{
+        color: dodgerblue;
+        width: 50%;
+        outline: none;
+        border: none;
+        background: transparent;
+        font-size: 20px;
+      }
+    }
+    ul{
+      width: 100%;
+      margin-top: 20px;
+      li{
+        width: 100%;
+      }
+    }
+  }
+}
+.hot-content{
+  height: 65px;
+  padding: 5px;
+  .hot-left{
+    width: 25%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    line-height: 65px;
+  }
+  .hot-right{
+    width: 75%;
+    height: 100%;
+    float: left;
+    text-align: left;
+    h4{
+      margin: 0;
+      color: #212427;
+      font-size: 15px;
+    }
+    div{
+      color: #969696;
+      font-size: 12px;
+      margin-top: 5px;
+      span{
+        float: left;
+      }
+      span:last-child{
+        float: right;
+      }
+    }
+  }
+}

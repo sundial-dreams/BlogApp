@@ -1,0 +1,151 @@
+#user
+type User {
+  id: ID
+  nickname: String
+  email: String
+  password: String
+  picture: String
+  position: String
+  company: String
+  description: String
+  text: String
+  createTime: String
+}
+
+#article
+type Article {
+  id: ID
+  title: String
+  classify: String #classify of article
+  label: String
+  author: String
+  text: String
+  publishTime: String
+  readNumber: Int
+  likeNumber: Int
+  commentNumber: Int
+  collectionNumber: Int
+  shareNumber: Int
+  image: String
+}
+
+type Article_User_Label {
+  title: String
+  classify: String #classify of article
+  text: String
+  publishTime: String
+  readNumber: Int
+  likeNumber: Int
+  commentNumber: Int
+  collectionNumber: Int
+  shareNumber: Int
+  image: String
+  id: ID
+  userId: ID
+  nickname: String
+  email: String
+  picture: String
+  name: String
+  position: String
+  company: String
+  description: String
+}
+
+type CommentUser{
+  id: String
+  text:String
+  articleId: ID
+  userId: ID
+  nickname: String
+  picture: String
+  time: String
+}
+
+type UserResponse {
+  err: Boolean!
+  message: String
+  response: User
+}
+type ArticleResponse{
+  err: Boolean!
+  message: String
+  response: Article
+}
+type Classify{
+  name: String
+  description: String
+  picture: String
+}
+type Label{
+  id: String
+  name: String
+  picture: String
+  classify: String
+  description: String
+}
+type Reply {
+  id: String
+  text: String
+  userId: String
+  commentId: String
+  time: String
+}
+type Error{
+  err: String
+  message: String
+}
+#input article
+input InputArticle{
+  title: String!
+  classify: String! #classify of article
+  label: String!
+  author: String!
+  text: String!
+}
+input InputUser {
+  nickname: String!
+  email: String!
+  password: String!
+}
+
+input InputComment {
+  time: String
+  articleId: ID
+  userId: ID
+  text: String
+}
+input InputReply {
+  time: String
+  commentId: ID
+  userId: ID
+  text: String
+}
+#root query
+type Query {
+  user(id: ID!): User!
+  article(classify:String ): [Article_User_Label]!
+  articleById(id: ID!): Article_User_Label
+  classify: [Classify]!
+  labelByClassify(classify:String!): [Label]!
+  replyByComment(id: ID!): [Reply]!
+  commentByArticleId(id: ID!) :[CommentUser]!
+}
+
+
+#root mutation
+type Mutation {
+  createUser(input: InputUser!): UserResponse
+  updateUser(id:ID!, input: InputUser!): UserResponse
+  login(email:String!, password: String!): UserResponse
+  createArticle(input: InputArticle): ArticleResponse
+  createComment(input: InputComment!):Error
+  articleLike(id: ID!): Error
+  articleRead(id: ID!): Error
+  replyComment(input: InputReply!): Error
+}
+
+#schema
+schema {
+  query: Query
+  mutation: Mutation
+}

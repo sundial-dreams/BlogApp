@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2018",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "pretty": true,
+    "baseUrl": "./lib",
+    "moduleResolution": "node"
+  },
+  "include": [
+    "lib/**/*.ts",
+    "lib/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

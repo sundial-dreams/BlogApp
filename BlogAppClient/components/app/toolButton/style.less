@@ -1,0 +1,149 @@
+.tool-button {
+  width: 60px;
+  height: 60px;
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  background: transparent;
+
+  &.active {
+    .main-button {
+      background: red;
+      transform: rotate(-45deg);
+
+      &:hover {
+        transform: translateY(3px) rotate(-45deg);
+      }
+
+      &:active {
+        transform: translateY(6px) rotate(-45deg);
+      }
+    }
+
+    #mixin {
+      visibility: visible;
+      opacity: 1;
+      cursor: pointer;
+
+
+    }
+
+    .user-button {
+      #mixin;
+      transform: translate(5px, -120px)  rotate(0);
+
+      &:hover {
+        transform: translate(5px, -118px)  rotate(0);
+
+      }
+
+      &:active {
+        transform: translate(5px, -116px)  rotate(0);
+      }
+    }
+
+    .write-article-button {
+      #mixin;
+      transform: translate(-85px, -85px) rotate(0);
+
+      &:hover {
+        transform: translate(-85px, -83px) rotate(0);
+
+      }
+
+      &:active {
+        transform: translate(-85px, -81px) rotate(0);
+      }
+    }
+
+    .other-button {
+      #mixin;
+      transform: translate(-120px, 5px) rotate(0);
+
+      &:hover {
+        transform: translate(-120px, 7px) rotate(0);
+
+      }
+      &:active {
+        transform: translate(-120px, 9px) rotate(0);
+      }
+    }
+  }
+
+  .main-button {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: dodgerblue;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .03);
+    transition: .3s;
+    position: relative;
+    z-index: 10;
+    &:hover {
+      transform: translateY(3px);
+    }
+
+    &:active {
+      transform: translateY(6px);
+    }
+
+    button {
+      background: transparent;
+      width: 100%;
+      height: 100%;
+      outline: none;
+      border: none;
+      color: white;
+      font-size: 35px;
+      cursor: pointer;
+    }
+  }
+
+  #mixin {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: .3s;
+    visibility: hidden;
+    opacity: 0;
+    transform: rotate(-180deg);
+    z-index: 1;
+    text-align: center;
+    button {
+      cursor: pointer;
+      width: 100%;
+      background: transparent;
+      outline: none;
+      border: none;
+      height: 100%;
+      color: white;
+      font-size: 20px;
+    }
+  }
+
+  .user-button {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    #mixin;
+
+  }
+
+  .write-article-button {
+    width: 100%;
+    height: 100%;
+    #mixin;
+    background: chartreuse;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .03);
+  }
+
+  .other-button {
+    width: 100%;
+    height: 100%;
+    background: blueviolet;
+    border-radius: 50%;
+    #mixin;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .03);
+  }
+}
