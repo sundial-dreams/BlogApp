@@ -97,8 +97,8 @@ query{
     }
 }`);
 export const getAllClassify = () => graphqlClient.query({
-  query: QUERY_CLASSIFY()
-}).then(({ data: { classify } }) => classify);
+  query: QUERY_CLASSIFY(),
+}).then(({ data }) => data);
 
 export const QUERY_LABEL_BY_CLASSIFY = () => gql(`
 query  LabelByClassify($classify: String!) {

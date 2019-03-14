@@ -28,33 +28,100 @@ var graphqlClient = new apollo_boost__WEBPACK_IMPORTED_MODULE_0__["default"]({
 /*!*************************!*\
   !*** ./GQL/Mutation.js ***!
   \*************************/
-/*! exports provided: LOGIN, REGISTER, POST_ARTICLE, CREATE_COMMENT, LIKE_ARTICLE */
+/*! exports provided: LOGIN, toLogin, REGISTER, toRegister, POST_ARTICLE, toPostArticle, CREATE_COMMENT, toCreateComment, LIKE_ARTICLE, toLikeArticle */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGIN", function() { return LOGIN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toLogin", function() { return toLogin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REGISTER", function() { return REGISTER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toRegister", function() { return toRegister; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "POST_ARTICLE", function() { return POST_ARTICLE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toPostArticle", function() { return toPostArticle; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CREATE_COMMENT", function() { return CREATE_COMMENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toCreateComment", function() { return toCreateComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LIKE_ARTICLE", function() { return LIKE_ARTICLE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toLikeArticle", function() { return toLikeArticle; });
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql-tag */ "./node_modules/graphql-tag/src/index.js");
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _GraphQL__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GraphQL */ "./GQL/GraphQL.js");
+
 
 var LOGIN = function LOGIN() {
   return graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()("\nmutation Login($email: String!, $password: String!){\n login(email: $email, password: $password) {\n    err\n    message\n    response {\n      id\n      email\n      nickname\n      picture\n      position\n      company\n      description\n      text\n    }\n }\n}");
 };
+var toLogin = function toLogin(email, password) {
+  return _GraphQL__WEBPACK_IMPORTED_MODULE_1__["default"].mutate({
+    mutation: LOGIN(),
+    variables: {
+      email: email,
+      password: password
+    }
+  }).then(function (_ref) {
+    var login = _ref.data.login;
+    return login;
+  });
+};
 var REGISTER = function REGISTER() {
   return graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()("\nmutation CreateUser($nickname: String!, $password: String!, $email: String!){\n   createUser(input: {\n     nickname: $nickname\n     password: $password\n     email: $email\n   }){\n     err\n     message\n     response {\n      id\n      email\n      nickname\n      picture\n     }\n   }\n}");
+};
+var toRegister = function toRegister(nickname, password, email) {
+  return _GraphQL__WEBPACK_IMPORTED_MODULE_1__["default"].mutate({
+    mutation: REGISTER(),
+    variables: {
+      input: {
+        nickname: nickname,
+        password: password,
+        email: email
+      }
+    }
+  }).then(function (_ref2) {
+    var createUser = _ref2.data.createUser;
+    return createUser;
+  });
 };
 var POST_ARTICLE = function POST_ARTICLE() {
   return graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()("\nmutation CreateArticle($input: InputArticle!){\n     createArticle(input: $input){\n          err\n          message\n          response {\n            id\n          }\n       }\n}");
 };
+var toPostArticle = function toPostArticle(article) {
+  return _GraphQL__WEBPACK_IMPORTED_MODULE_1__["default"].mutate({
+    mutation: POST_ARTICLE(),
+    variables: {
+      input: article
+    }
+  }).then(function (_ref3) {
+    var createArticle = _ref3.data.createArticle;
+    return createArticle;
+  });
+};
 var CREATE_COMMENT = function CREATE_COMMENT() {
   return graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()("\nmutation CreateComment($input: InputComment!){\n  createComment(input: $input){\n    err\n    message\n  }\n}");
 };
+var toCreateComment = function toCreateComment(comment) {
+  return _GraphQL__WEBPACK_IMPORTED_MODULE_1__["default"].mutate({
+    mutation: CREATE_COMMENT(),
+    variables: {
+      input: comment
+    }
+  }).then(function (_ref4) {
+    var createComment = _ref4.data.createComment;
+    return createComment;
+  });
+};
 var LIKE_ARTICLE = function LIKE_ARTICLE() {
   return graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()("\nmutation ArticleLike($id: ID!){\n  articleLike(id: $id){\n    err\n    message\n  }\n}");
+};
+var toLikeArticle = function toLikeArticle(id) {
+  return _GraphQL__WEBPACK_IMPORTED_MODULE_1__["default"].mutate({
+    mutation: LIKE_ARTICLE(),
+    variables: {
+      id: id
+    }
+  }).then(function (_ref5) {
+    var articleLike = _ref5.data.articleLike;
+    return articleLike;
+  });
 };
 
 /***/ }),
@@ -63,45 +130,140 @@ var LIKE_ARTICLE = function LIKE_ARTICLE() {
 /*!**********************!*\
   !*** ./GQL/Query.js ***!
   \**********************/
-/*! exports provided: QUERY_ARTICLE_BY_CLASSIFY, QUERY_ARTICLE_AND_COMMENT_BY_ID, QUERY_USER_BY_ID, QUERY_CLASSIFY, QUERY_LABEL_BY_CLASSIFY, QUERY_CLASSIFY_AND_LABEL, QUERY_COMMENT_BY_ArticleId, QUERY_REPLY_BY_COMMENT_ID */
+/*! exports provided: QUERY_ARTICLE_BY_CLASSIFY, getArticleByClassify, QUERY_ARTICLE_AND_COMMENT_BY_ID, getArtCommById, QUERY_USER_BY_ID, getUserById, QUERY_CLASSIFY, getAllClassify, QUERY_LABEL_BY_CLASSIFY, getLabelByClassify, QUERY_CLASSIFY_AND_LABEL, getClassifyLabel, QUERY_COMMENT_BY_ArticleId, getCommByArtId, QUERY_REPLY_BY_COMMENT_ID, getReplyByCommId */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QUERY_ARTICLE_BY_CLASSIFY", function() { return QUERY_ARTICLE_BY_CLASSIFY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getArticleByClassify", function() { return getArticleByClassify; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QUERY_ARTICLE_AND_COMMENT_BY_ID", function() { return QUERY_ARTICLE_AND_COMMENT_BY_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getArtCommById", function() { return getArtCommById; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QUERY_USER_BY_ID", function() { return QUERY_USER_BY_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserById", function() { return getUserById; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QUERY_CLASSIFY", function() { return QUERY_CLASSIFY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllClassify", function() { return getAllClassify; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QUERY_LABEL_BY_CLASSIFY", function() { return QUERY_LABEL_BY_CLASSIFY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLabelByClassify", function() { return getLabelByClassify; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QUERY_CLASSIFY_AND_LABEL", function() { return QUERY_CLASSIFY_AND_LABEL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getClassifyLabel", function() { return getClassifyLabel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QUERY_COMMENT_BY_ArticleId", function() { return QUERY_COMMENT_BY_ArticleId; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCommByArtId", function() { return getCommByArtId; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QUERY_REPLY_BY_COMMENT_ID", function() { return QUERY_REPLY_BY_COMMENT_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getReplyByCommId", function() { return getReplyByCommId; });
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql-tag */ "./node_modules/graphql-tag/src/index.js");
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _GraphQL__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GraphQL */ "./GQL/GraphQL.js");
+
 
 var QUERY_ARTICLE_BY_CLASSIFY = function QUERY_ARTICLE_BY_CLASSIFY() {
   return graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()("\nquery Article($classify: String!) {\n          article(classify: $classify) {\n              id\n              title\n              classify\n              text\n              publishTime\n              readNumber\n              likeNumber\n              commentNumber\n              collectionNumber\n              shareNumber\n              image\n              userId\n              nickname\n              email\n              picture\n              name\n     }\n}");
 };
+var getArticleByClassify = function getArticleByClassify(classify) {
+  return _GraphQL__WEBPACK_IMPORTED_MODULE_1__["default"].query({
+    query: QUERY_ARTICLE_BY_CLASSIFY(),
+    variables: {
+      classify: classify
+    }
+  }).then(function (_ref) {
+    var article = _ref.data.article;
+    return article;
+  });
+};
 var QUERY_ARTICLE_AND_COMMENT_BY_ID = function QUERY_ARTICLE_AND_COMMENT_BY_ID() {
   return graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()("\nquery ArticleAndCommentById($id: ID!) {\n          articleById(id: $id) {\n              title\n              classify\n              text\n              publishTime\n              readNumber\n              likeNumber\n              commentNumber\n              collectionNumber\n              shareNumber\n              image\n              userId\n              nickname\n              email\n              picture\n              name\n              position\n              company\n              description\n          }\n          commentByArticleId(id: $id){\n              userId\n              text\n              nickname\n              articleId\n              time\n              id\n              picture\n          }\n          \n}");
+};
+var getArtCommById = function getArtCommById(id) {
+  return _GraphQL__WEBPACK_IMPORTED_MODULE_1__["default"].query({
+    query: QUERY_ARTICLE_AND_COMMENT_BY_ID(),
+    variables: {
+      id: id
+    }
+  }).then(function (_ref2) {
+    var data = _ref2.data;
+    return data;
+  });
 };
 var QUERY_USER_BY_ID = function QUERY_USER_BY_ID() {
   return graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()("\nquery User($id: ID!) {\n    user(id: $id){\n      id\n      email\n      nickname\n      picture\n      position\n      company\n      description\n      text\n    }\n}");
 };
+var getUserById = function getUserById(id) {
+  return _GraphQL__WEBPACK_IMPORTED_MODULE_1__["default"].query({
+    query: QUERY_USER_BY_ID(),
+    variables: {
+      id: id
+    }
+  }).then(function (_ref3) {
+    var id = _ref3.data.id;
+    return id;
+  });
+};
 var QUERY_CLASSIFY = function QUERY_CLASSIFY() {
   return graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()("\nquery{\n    classify{\n      name\n      description\n      picture\n    }\n}");
+};
+var getAllClassify = function getAllClassify() {
+  return _GraphQL__WEBPACK_IMPORTED_MODULE_1__["default"].query({
+    query: QUERY_CLASSIFY()
+  }).then(function (_ref4) {
+    var data = _ref4.data;
+    return data;
+  });
 };
 var QUERY_LABEL_BY_CLASSIFY = function QUERY_LABEL_BY_CLASSIFY() {
   return graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()("\nquery  LabelByClassify($classify: String!) {\n          labelByClassify(classify: $classify){\n            id\n            name\n            classify\n            description\n            picture\n      } \n}");
 };
+var getLabelByClassify = function getLabelByClassify(classify) {
+  return _GraphQL__WEBPACK_IMPORTED_MODULE_1__["default"].query({
+    query: QUERY_LABEL_BY_CLASSIFY(),
+    variables: {
+      classify: classify
+    }
+  }).then(function (_ref5) {
+    var labelByClassify = _ref5.data.labelByClassify;
+    return labelByClassify;
+  });
+};
 var QUERY_CLASSIFY_AND_LABEL = function QUERY_CLASSIFY_AND_LABEL() {
   return graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()("\nquery labelByClassify($defaultClassify: String!) {\n      labelByClassify(classify: $defaultClassify){\n        id\n        name\n      } \n      classify{\n         name\n      }\n}");
+};
+var getClassifyLabel = function getClassifyLabel(defaultClassify) {
+  return _GraphQL__WEBPACK_IMPORTED_MODULE_1__["default"].query({
+    query: QUERY_CLASSIFY_AND_LABEL(),
+    variables: {
+      defaultClassify: defaultClassify
+    }
+  }).then(function (_ref6) {
+    var data = _ref6.data;
+    return data;
+  });
 };
 var QUERY_COMMENT_BY_ArticleId = function QUERY_COMMENT_BY_ArticleId() {
   return graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()("\nquery CommentByArticleId($id: ID){\n  commentByArticleId(id: $id){\n    userId\n    text\n    nickname\n    articleId\n    time\n    id\n    picture\n  }\n}");
 };
+var getCommByArtId = function getCommByArtId(id) {
+  return _GraphQL__WEBPACK_IMPORTED_MODULE_1__["default"].query({
+    query: QUERY_COMMENT_BY_ArticleId(),
+    variables: {
+      id: id
+    }
+  }).then(function (_ref7) {
+    var commentByArticleId = _ref7.data.commentByArticleId;
+    return commentByArticleId;
+  });
+};
 var QUERY_REPLY_BY_COMMENT_ID = function QUERY_REPLY_BY_COMMENT_ID() {
   return graphql_tag__WEBPACK_IMPORTED_MODULE_0___default()("\nquery ReplyByComment{\n  replyByComment(id: $id) {\n    id\n    userId\n    commentId\n    text\n    time\n  }\n}");
+};
+var getReplyByCommId = function getReplyByCommId(id) {
+  return _GraphQL__WEBPACK_IMPORTED_MODULE_1__["default"].query({
+    query: QUERY_REPLY_BY_COMMENT_ID(),
+    variables: {
+      id: id
+    }
+  }).then(function (_ref8) {
+    var replyByComment = _ref8.data.replyByComment;
+    return replyByComment;
+  });
 };
 
 /***/ }),
@@ -443,7 +605,7 @@ function (_Component) {
         className: Object(utils_utils__WEBPACK_IMPORTED_MODULE_4__["mergeClassName"])(_style_less__WEBPACK_IMPORTED_MODULE_1___default.a["reply-comment"], this.state.active && _style_less__WEBPACK_IMPORTED_MODULE_1___default.a["reply-active"]),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 44
+          lineNumber: 43
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -456,14 +618,14 @@ function (_Component) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 45
+          lineNumber: 44
         },
         __self: this
       }, "\u56DE\u590D"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: _style_less__WEBPACK_IMPORTED_MODULE_1___default.a["reply-textarea"],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 48
+          lineNumber: 47
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
@@ -476,13 +638,13 @@ function (_Component) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 49
+          lineNumber: 48
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 51
+          lineNumber: 50
         },
         __self: this
       }, "\u53D1\u8868")));
@@ -514,19 +676,19 @@ function (_Component2) {
     value: function componentDidMount() {
       var _this4 = this;
 
-      GQL_GraphQL__WEBPACK_IMPORTED_MODULE_8__["default"].query({
-        query: Object(GQL_Query__WEBPACK_IMPORTED_MODULE_7__["QUERY_REPLY_BY_COMMENT_ID"])(),
-        variables: {
-          id: this.props.comment.id
-        }
-      }).then(function (_ref) {
-        var replyByComment = _ref.data.replyByComment;
-        return replyByComment;
-      }).then(function (reply) {
+      Object(GQL_Query__WEBPACK_IMPORTED_MODULE_7__["getReplyByCommId"])(this.props.comment.id).then(function (reply) {
         _this4.setState({
           reply: reply
         });
-      });
+      }); // gqlClient.query({
+      //   query: QUERY_REPLY_BY_COMMENT_ID(),
+      //   variables: { id: this.props.comment.id }
+      // }).then(({ data: { replyByComment } }) => replyByComment)
+      //   .then(reply => {
+      //     this.setState({
+      //       reply
+      //     })
+      //   })
     }
   }, {
     key: "render",
@@ -538,14 +700,14 @@ function (_Component2) {
         className: _style_less__WEBPACK_IMPORTED_MODULE_1___default.a["comment-item"],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 83
+          lineNumber: 87
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: _style_less__WEBPACK_IMPORTED_MODULE_1___default.a["comment-head"],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 84
+          lineNumber: 88
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(components_component_component__WEBPACK_IMPORTED_MODULE_2__["UserPicture"], {
@@ -557,45 +719,45 @@ function (_Component2) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 85
+          lineNumber: 89
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 86
+          lineNumber: 90
         },
         __self: this
       }, comment.nickname), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 89
+          lineNumber: 93
         },
         __self: this
       }, new Date(parseInt(comment.time)).toDateString())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: _style_less__WEBPACK_IMPORTED_MODULE_1___default.a["comment-body"],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 93
+          lineNumber: 97
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 94
+          lineNumber: 98
         },
         __self: this
       }, comment.text)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: _style_less__WEBPACK_IMPORTED_MODULE_1___default.a["reply"],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 98
+          lineNumber: 102
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 99
+          lineNumber: 103
         },
         __self: this
       }, this.state.reply.map(function (v, i) {
@@ -603,13 +765,13 @@ function (_Component2) {
           key: i,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 101
+            lineNumber: 105
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ReplyItem, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 102
+            lineNumber: 106
           },
           __self: this
         }));
@@ -617,13 +779,13 @@ function (_Component2) {
         className: _style_less__WEBPACK_IMPORTED_MODULE_1___default.a["comment-reply"],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 107
+          lineNumber: 111
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ReplyComment, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 108
+          lineNumber: 112
         },
         __self: this
       })));
@@ -684,7 +846,7 @@ function (_Component3) {
         className: Object(utils_utils__WEBPACK_IMPORTED_MODULE_4__["mergeClassName"])(_style_less__WEBPACK_IMPORTED_MODULE_1___default.a["write-comment"], this.state.active && _style_less__WEBPACK_IMPORTED_MODULE_1___default.a["write-comment-active"]),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 149
+          lineNumber: 153
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -697,14 +859,14 @@ function (_Component3) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 150
+          lineNumber: 154
         },
         __self: this
       }, "\u5199\u8BC4\u8BBA"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: _style_less__WEBPACK_IMPORTED_MODULE_1___default.a["input-comment"],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 155
+          lineNumber: 159
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
@@ -713,7 +875,7 @@ function (_Component3) {
         value: this.state.text,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 156
+          lineNumber: 160
         },
         __self: this
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -721,7 +883,7 @@ function (_Component3) {
         onClick: this.handlePost,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 159
+          lineNumber: 163
         },
         __self: this
       }, "\u53D1\u8868")));
@@ -773,24 +935,15 @@ function (_Component4) {
           id = _this$props$userState.id;
       var articleId = this.props.articleId;
       var now = Date.now().toString();
-      GQL_GraphQL__WEBPACK_IMPORTED_MODULE_8__["default"].mutate({
-        mutation: Object(GQL_Mutation__WEBPACK_IMPORTED_MODULE_6__["CREATE_COMMENT"])(),
-        variables: {
-          input: {
-            time: now,
-            text: commentText,
-            userId: id,
-            articleId: articleId
-          }
-        }
-      }).then(function (_ref2) {
-        var data = _ref2.data;
-        return data;
-      }).then(function (_ref3) {
-        var err = _ref3.err,
-            message = _ref3.message;
-        console.log(err, message);
-        if (err) return "err";
+      Object(GQL_Mutation__WEBPACK_IMPORTED_MODULE_6__["toCreateComment"])({
+        time: now,
+        text: commentText,
+        userId: id,
+        articleId: articleId
+      }).then(function (_ref) {
+        var err = _ref.err,
+            message = _ref.message;
+        if (err === "true") return "err";
 
         _this8.setState(function (state) {
           return {
@@ -805,6 +958,25 @@ function (_Component4) {
           };
         });
       });
+      /*gqlClient.mutate({
+        mutation: CREATE_COMMENT(),
+        variables: {
+          input: { time: now, text: commentText, userId: id, articleId }
+        }
+      })
+        .then(({ data }) => data)
+        .then(({ err, message }) => {
+          console.log(err, message);
+          if (err) return "err";
+          this.setState(state => ({
+            comments: [...state.comments, {
+              picture,
+              nickname,
+              time: now,
+              text: commentText
+            }].sort((a, b) => parseInt(b.time) - parseInt(a.time))
+          }));
+        })*/
     }
   }, {
     key: "render",
@@ -816,32 +988,32 @@ function (_Component4) {
         className: _style_less__WEBPACK_IMPORTED_MODULE_1___default.a["article-comment"],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 218
+          lineNumber: 235
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 219
+          lineNumber: 236
         },
         __self: this
       }, "Comment", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 220
+          lineNumber: 237
         },
         __self: this
       }, isLogin ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(WriteComment, {
         handlePost: this.handlePost,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 222
+          lineNumber: 239
         },
         __self: this
       }) : "")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 226
+          lineNumber: 243
         },
         __self: this
       }, this.state.comments.map(function (v, i) {
@@ -849,7 +1021,7 @@ function (_Component4) {
           key: i,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 228
+            lineNumber: 245
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CommentItem, {
@@ -857,7 +1029,7 @@ function (_Component4) {
           userId: _this9.props.userId,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 229
+            lineNumber: 246
           },
           __self: this
         }));
@@ -49265,7 +49437,7 @@ var removeCookies = function removeCookies(key) {
 
 /***/ }),
 
-/***/ 23:
+/***/ 16:
 /*!*****************************!*\
   !*** multi ./pages/view.js ***!
   \*****************************/
@@ -49290,5 +49462,5 @@ module.exports = dll_e8427f5b250f425a56e7;
 
 /***/ })
 
-},[[23,"static/runtime/webpack.js","styles"]]]));;
+},[[16,"static/runtime/webpack.js","styles"]]]));;
 //# sourceMappingURL=view.js.map

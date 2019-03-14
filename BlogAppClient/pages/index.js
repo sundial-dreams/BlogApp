@@ -25,12 +25,12 @@ export default class Index extends Component {
   }
 
   render () {
-    setTimeout(() => this.setState({
-      child: <Fragment>
-        <IndexHead/>
-        <IndexContent/>
-      </Fragment>
-    }), 0);
+    // setTimeout(() => this.setState({
+    //   child: <Fragment>
+    //     <IndexHead/>
+    //     <IndexContent/>
+    //   </Fragment>
+    // }), 0);
     return (
       <div id="index" className="__page">
         <Fragment>

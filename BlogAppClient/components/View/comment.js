@@ -195,9 +195,9 @@ class Comment extends Component {
     const { articleId } = this.props;
     const now = Date.now().toString();
     toCreateComment({ time: now, text: commentText, userId: id, articleId })
-      .then(({err, message}) => {
-        console.log(err, message);
-        if (err) return "err";
+      .then(({ err, message }) => {
+        if (err === "true") return "err";
+
         this.setState(state => ({
           comments: [...state.comments, {
             picture,
@@ -205,7 +205,8 @@ class Comment extends Component {
             time: now,
             text: commentText
           }].sort((a, b) => parseInt(b.time) - parseInt(a.time))
-      }))});
+        }))
+      });
     /*gqlClient.mutate({
       mutation: CREATE_COMMENT(),
       variables: {

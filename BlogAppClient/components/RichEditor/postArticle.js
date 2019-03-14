@@ -113,15 +113,14 @@ export default class Post extends Component {
   }
 
   componentDidMount () {
-    getAllClassify(defaultClassify).then(
-      ({ labelByClassify, classify }) => {
-        console.log(labelByClassify, classify);
+    getAllClassify().then(
+      ({ classify }) => {
         this.setState({
           classify,
-          label: labelByClassify
         })
       }
     );
+    getLabelByClassify(defaultClassify).then(label => this.setState({ label }));
     // gqlClient.query({
     //   query: QUERY_CLASSIFY_AND_LABEL(),
     //   variables: { defaultClassify }

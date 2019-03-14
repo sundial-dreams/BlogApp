@@ -20,15 +20,15 @@ const root = {
   ...comment
 };
 
-/*app.use("/graphql", cors({}), graphqlHTTP({
+app.use("/graphql", cors({}), graphqlHTTP({
   schema,
   rootValue: root,
   graphiql: true,
-}));*/
-app.use("/graphql", cors({}), graphqlHTTP({
-  schema: Schema,
-  graphqli: true
 }));
+/*app.use("/graphql", cors({}), graphqlHTTP({
+  schema: schema,
+  graphqli: true
+}));*/
 app.listen(8769, err =>
   console.log(err || "graphql server build in http://localhost:8769/graphql")
 );

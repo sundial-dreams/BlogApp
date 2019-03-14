@@ -58,7 +58,7 @@ mutation CreateArticle($input: InputArticle!){
 export const toPostArticle = (article) => graphqlClient.mutate({
   mutation: POST_ARTICLE(),
   variables: { input: article }
-}).then(({ data: createArticle }) => createArticle);
+}).then(({ data: { createArticle } }) => createArticle);
 
 export const CREATE_COMMENT = () => gql(`
 mutation CreateComment($input: InputComment!){
