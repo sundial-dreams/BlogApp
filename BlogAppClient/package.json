@@ -23,7 +23,7 @@
     "react-apollo": "^2.3.3",
     "react-cookies": "^0.1.0",
     "react-dom": "^16.6.3",
-    "react-draft-wysiwyg": "^1.12.18",
+    "react-draft-wysiwyg": "^1.14.6",
     "react-markdown": "^4.0.4",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
