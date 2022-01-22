@@ -17,7 +17,7 @@
     "html-to-draftjs": "^1.4.0",
     "less": "^3.9.0",
     "next": "^7.0.2",
-    "node-fetch": "^2.3.0",
+    "node-fetch": "^3.1.1",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-apollo": "^2.3.3",
